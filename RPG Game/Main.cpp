@@ -8,6 +8,7 @@
 #include "Engine.h"
 #include "Camera.h"
 #include "Input.h"
+#include "TileMap.h"
 #include "Player.h"
 
 int main(int argc, char** argv) {
@@ -37,6 +38,8 @@ int main(int argc, char** argv) {
 	Input* input = new Input();
 	input->initialize();
 
+	TileMap* tilemap = new TileMap(engine->get_renderer(), engine->get_width(), engine->get_height());
+
 	Player* player = new Player();
 
 	while (engine->running) {
@@ -48,10 +51,14 @@ int main(int argc, char** argv) {
 		
 		
 		// Draw 
+
+		tilemap->draw(engine->get_renderer(), camera, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height());
+
 		player->draw(engine->get_renderer(), camera->getPos(player->get_rect().x, player->get_rect().y, player->get_rect().w, player->get_rect().h, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height()));
 		
 		player->update();
-		std::cout << player->get_rect().x << std::endl;
+		//std::cout << tilemap->get_tiles()[0][0].dstrect.x << std::endl; 
+		//std::cout << player->get_rect().x << std::endl;
 		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 255, 0, 255);
 		SDL_Rect test = { 40, 40, 40, 40 };
 		std::tuple<int, int> pos = camera->getPos(test.x, test.y, test.w, test.h, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height());
@@ -74,6 +81,7 @@ int main(int argc, char** argv) {
 	delete player;
 	delete camera;
 	delete input;
+	delete tilemap;
 
 	SDL_Quit();
 	IMG_Quit();

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d16a5e86-8163-4678-8395-e3726502e5ad": {
+      "ProjectGuid": "d16a5e86-8163-4678-8395-e3726502e5ad",
+      "DisplayName": "RPG Game",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

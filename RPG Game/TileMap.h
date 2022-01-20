@@ -5,29 +5,40 @@
 
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include "Camera.h"
+
 class TileMap
 {
 
+
 public:
 
-	TileMap(int display_width, int display_height);
+	TileMap(SDL_Renderer* renderer, int display_width, int display_height);
 	~TileMap();
 
-private:
+	void draw(SDL_Renderer* renderer, Camera* camera, int px, int py, int display_width, int display_height);
+
 
 	struct Tile {
 
+		SDL_Texture* texture;
+		std::tuple<int, int> pos;
+		SDL_Rect dstrect;
 
 
 	};
 
-	Tile tile[1][1];
+	Tile** get_tiles();
 
-	std::vector<SDL_Texture*> tile_textures;
+private:
+
+	
+	Tile** tiles = 0;
 
 	int rows, cols;
 
