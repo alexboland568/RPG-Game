@@ -12,17 +12,17 @@
 
 #include "Camera.h"
 
+
+
 class TileMap
 {
-
 
 public:
 
 	TileMap(SDL_Renderer* renderer, int display_width, int display_height);
 	~TileMap();
 
-	void draw(SDL_Renderer* renderer, Camera* camera, int px, int py, int display_width, int display_height);
-
+	void draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, int display_width, int display_height);
 
 	struct Tile {
 
@@ -33,14 +33,15 @@ public:
 
 	};
 
+	Tile** tiles = 0;
+
 	Tile** get_tiles();
 
 private:
 
 	
-	Tile** tiles = 0;
-
-	int rows, cols;
+	
+	int rows = 30, cols = 25;
 
 };
 

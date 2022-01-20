@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 
 	TileMap* tilemap = new TileMap(engine->get_renderer(), engine->get_width(), engine->get_height());
 
-	Player* player = new Player();
+	Player* player = new Player(engine->get_width(), engine->get_height());
 
 	while (engine->running) {
 
@@ -52,24 +52,22 @@ int main(int argc, char** argv) {
 		
 		// Draw 
 
-		tilemap->draw(engine->get_renderer(), camera, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height());
+		tilemap->draw(engine->get_renderer(), camera, player->get_rect(), engine->get_width(), engine->get_height());
 
-		player->draw(engine->get_renderer(), camera->getPos(player->get_rect().x, player->get_rect().y, player->get_rect().w, player->get_rect().h, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height()));
+		player->draw(engine->get_renderer(), camera->getPos(player->get_rect().x, player->get_rect().y, player->get_rect().w, player->get_rect().h, player->get_rect(), engine->get_width(), engine->get_height()));
 		
 		player->update();
-		//std::cout << tilemap->get_tiles()[0][0].dstrect.x << std::endl; 
-		//std::cout << player->get_rect().x << std::endl;
+		std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
 		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 255, 0, 255);
 		SDL_Rect test = { 40, 40, 40, 40 };
-		std::tuple<int, int> pos = camera->getPos(test.x, test.y, test.w, test.h, player->get_rect().x, player->get_rect().y, engine->get_width(), engine->get_height());
+		std::tuple<int, int> pos = camera->getPos(test.x, test.y, test.w, test.h, player->get_rect(), engine->get_width(), engine->get_height());
 		test = { std::get<0>(pos), std::get<1>(pos), test.w, test.h };
 		SDL_RenderFillRect(engine->get_renderer(), &test);
 		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 0, 0, 255);
 
 		SDL_RenderPresent(engine->get_renderer());
 
-		//std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
-
+	
 		frame_time = SDL_GetTicks() - frame_start;
 
 		if (FRAME_DELAY > frame_time)

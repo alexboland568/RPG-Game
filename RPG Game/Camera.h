@@ -6,12 +6,16 @@
 #include <iostream>
 #include <tuple>
 
+#include <SDL/SDL.h>
+
+#include "TileMap.h"
+
 class Camera
 {
 
 public:
 
-	std::tuple<int, int> getPos(int x, int y, int w, int h, int px, int py, int display_width, int display_height);
+	std::tuple<int, int> getPos(int x, int y, int w, int h, SDL_Rect player_rect, int display_width, int display_height, Tiles ** tiles);
 };
 
 #endif

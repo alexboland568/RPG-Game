@@ -1,11 +1,11 @@
 #include "Player.h"
 
-Player::Player() {
+Player::Player(int display_width, int display_height) {
 
 	font = TTF_OpenFont("Res/OpenSans-Regular.ttf", 25);
 
-	x = 0;
-	y = 0;
+	x = display_width / 2;
+	y = display_height / 2;
 	w = 32;
 	h = 32; 
 

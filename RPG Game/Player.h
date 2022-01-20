@@ -16,7 +16,7 @@ class Player
 
 public:
 
-	Player();
+	Player(int display_width, int display_height);
 	~Player();
 
 	void draw(SDL_Renderer* renderer, std::tuple<int, int> cameraPos);

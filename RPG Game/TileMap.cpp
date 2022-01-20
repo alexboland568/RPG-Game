@@ -1,19 +1,18 @@
 #include "TileMap.h"
 
-TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) {
+extern 
 
-	rows = display_height / 32;
-	cols = display_width / 32;
+TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) {
 
 	SDL_Surface* surface = IMG_Load("Res/grass.png");
 	
-	tiles = new Tile * [20];
-	for (int i = 0; i < 20; i++)
-		tiles[i] = new Tile [15];
+	tiles = new Tile * [rows];
+	for (int i = 0; i < rows; i++)
+		tiles[i] = new Tile [cols];
 	
-	for (int i = 0; i < 20; i++) { 
+	for (int i = 0; i < rows; i++) { 
 
-		for (int j = 0; j < 15; j++) {
+		for (int j = 0; j < cols; j++) {
 
 			Tile tile; 
 			tile.texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -28,16 +27,15 @@ TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) 
 
 }
 
-void TileMap::draw(SDL_Renderer* renderer, Camera* camera, int px, int py, int display_width, int display_height) {
+void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, int display_width, int display_height) {
 
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < rows; i++) {
 
-		for (int j = 0; j < 15; j++) {
+		for (int j = 0; j < cols; j++) {
 
-			std::tuple<int, int> camera_pos = camera->getPos(tiles[i][j].dstrect.x, tiles[i][j].dstrect.y, tiles[i][j].dstrect.w, tiles[i][j].dstrect.h, px, py, display_width, display_height);
-			std::cout << std::get<0>(camera_pos) << std::endl; 
-			tiles[i][j].dstrect = { std::get<0>(camera_pos), std::get<1>(camera_pos), 32, 32 };
-
+			std::tuple<int, int> camera_pos = camera->getPos(std::get<0>(tiles[i][j].pos), std::get<1>(tiles[i][j].pos), tiles[i][j].dstrect.w, tiles[i][j].dstrect.h, player_rect, display_width, display_height);
+			tiles[i][j].dstrect = { std::get<0>(camera_pos), std::get<1>(camera_pos), 32, 32 }; 
+			
 			SDL_RenderCopy(renderer, tiles[i][j].texture, NULL, &tiles[i][j].dstrect);
 
 		}
@@ -54,16 +52,16 @@ TileMap::Tile** TileMap::get_tiles() {
 
 TileMap::~TileMap() {
 
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < rows; i++) {
 
-		for (int j = 0; j < 15; j++) {
+		for (int j = 0; j < cols; j++) {
 
 			SDL_DestroyTexture(tiles[i][j].texture);
 
 		}
 
 	}
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < rows; i++) {
 
 		delete[] tiles[i];
 
