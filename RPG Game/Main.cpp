@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
 		player->draw(engine->get_renderer(), camera->getPos(player->get_rect().x, player->get_rect().y, player->get_rect().w, player->get_rect().h, player->get_rect(), engine->get_width(), engine->get_height()));
 		
 		player->update();
-		std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
+		//std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
 		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 255, 0, 255);
 		SDL_Rect test = { 40, 40, 40, 40 };
 		std::tuple<int, int> pos = camera->getPos(test.x, test.y, test.w, test.h, player->get_rect(), engine->get_width(), engine->get_height());

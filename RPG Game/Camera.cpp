@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-std::tuple<int, int> Camera::getPos(int x, int y, int w, int h, SDL_Rect player_rect, int display_width, int display_height, Tiles ** tiles) {
+std::tuple<int, int> Camera::getPos(int x, int y, int w, int h, SDL_Rect player_rect, int display_width, int display_height) {
 
 	std::tuple<int, int> newPos;
 

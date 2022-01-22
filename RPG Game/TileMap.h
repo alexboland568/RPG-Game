@@ -11,7 +11,7 @@
 #include <SDL/SDL_image.h>
 
 #include "Camera.h"
-
+class Camera;
 
 
 class TileMap
@@ -23,26 +23,29 @@ public:
 	~TileMap();
 
 	void draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, int display_width, int display_height);
-
+	
 	struct Tile {
 
 		SDL_Texture* texture;
 		std::tuple<int, int> pos;
 		SDL_Rect dstrect;
-
+		std::string type;
 
 	};
 
-	Tile** tiles = 0;
+	std::vector<Tile> get_tiles();
 
-	Tile** get_tiles();
+	bool get_collision(SDL_Rect rect);
+	
 
 private:
 
-	
-	
-	int rows = 30, cols = 25;
 
+	
+	
+	std::vector<Tile> tiles;
+
+	int rows = 0, cols = 0;
 };
 
 #endif
