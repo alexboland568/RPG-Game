@@ -15,6 +15,8 @@ class Camera
 
 public:
 
+	Camera();
+
 	std::tuple<int, int> getPos(int x, int y, int w, int h, SDL_Rect player_rect, int display_width, int display_height);
 };
 

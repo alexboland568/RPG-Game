@@ -9,6 +9,8 @@ Player::Player(int display_width, int display_height) {
 	w = 32;
 	h = 32; 
 
+	pos = std::make_tuple(x, y);
+
 	dstrect = { x, y, w, h };
 
 	Level_Info level_info;
@@ -98,12 +100,19 @@ void Player::update() {
 	if (down)
 		y += vel;
 	dstrect = { x, y, w, h };
+	pos = std::make_tuple(x, y);
 
 }
 
 SDL_Rect Player::get_rect() {
 
 	return dstrect;
+
+}
+
+std::tuple<int, int> Player::get_pos() {
+
+	return pos; 
 
 }
 

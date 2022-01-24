@@ -25,6 +25,7 @@ public:
 	void update();
 
 	SDL_Rect get_rect();
+	std::tuple<int, int> get_pos();
 
 private:
 
@@ -32,6 +33,7 @@ private:
 
 	SDL_Texture* texture;
 	SDL_Rect dstrect;
+	std::tuple<int, int> pos;
 
 	int x, y, w, h, vel = 2;
 

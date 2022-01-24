@@ -1,6 +1,2 @@
-﻿  TileMap.cpp
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(72,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(92): warning C4715: 'TileMap::get_collision': not all control paths return a value
-  RPG Game.vcxproj -> C:\Users\surge\source\repos\RPG Game\Debug\RPG Game.exe
+﻿  Main.cpp
+  RPG Game.vcxproj -> C:\Users\hppav\Documents\GitHub\RPG-Game\Debug\RPG Game.exe

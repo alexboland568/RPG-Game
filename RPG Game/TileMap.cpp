@@ -37,7 +37,7 @@ TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) 
 			Tile tile;
 			tile.texture = SDL_CreateTextureFromSurface(renderer, water_surface);
 			//std::cout << std::get<1>(tiles[grass_rows * grass_cols - 1].pos) << std::endl; 
-			tile.pos = std::make_tuple(i * 32, std::get<1>(tiles[(grass_rows * grass_cols) - 1].pos) + j * 32 + 32);
+			tile.pos = std::make_tuple(i * 32, std::get<1>(tiles[(grass_rows * grass_cols) - 1].pos) + (j * 32) + 32);
 			tile.dstrect = { 0, 0, 32, 32 };
 			tile.type = "Water";
 			tiles.push_back(tile);
@@ -45,15 +45,16 @@ TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) 
 		}
 
 	}
+	//std::cout << std::get<1>(tiles[(grass_rows * grass_cols) - 1].pos) + 32 << std::endl;
 	
 	SDL_FreeSurface(grass_surface);
 	SDL_FreeSurface(water_surface);
 
 }
 
-void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, int display_width, int display_height) {
+void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, std::tuple<int, int> pos, int display_width, int display_height) {
 
-	get_collision(player_rect);
+	get_collision(pos, player_rect);
 
 	for (int i = 0; i < tiles.size(); i++) {
 
@@ -66,15 +67,16 @@ void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect,
 
 }
 
-bool TileMap::get_collision(SDL_Rect rect) {
+bool TileMap::get_collision(std::tuple<int, int> pos, SDL_Rect rect) {
 	//std::cout << rect.y << std::endl; 
 	//std::cout << tiles[0].dstrect.y << std::endl; 
 	for (int i = 0; i < tiles.size(); i++) {
 
 		if (tiles[i].type == "Water") {
-			std::cout << tiles[i].dstrect.y << std::endl; 
-			if (rect.x < tiles[i].dstrect.x + tiles[i].dstrect.w && rect.x + rect.w > tiles[i].dstrect.x && rect.y < tiles[i].dstrect.y + tiles[i].dstrect.h && rect.y + rect.h > tiles[i].dstrect.y) {
+			//std::cout << tiles[i].dstrect.y << std::endl; 
+			if (std::get<0>(pos) < std::get<0>(tiles[i].pos) + tiles[i].dstrect.w && std::get<0>(pos) + rect.w > std::get<0>(tiles[i].pos) && std::get<1>(pos) < std::get<1>(tiles[i].pos) + tiles[i].dstrect.h && std::get<1>(pos) + rect.h > std::get<1>(tiles[i].pos)) {
 				
+				std::cout << 1 << std::endl; 
 				return true;
 
 			}
@@ -88,6 +90,8 @@ bool TileMap::get_collision(SDL_Rect rect) {
 		}
 
 	}
+
+	return false; 
 
 }
 
