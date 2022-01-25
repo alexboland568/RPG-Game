@@ -11,6 +11,10 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 
+#include "Structures.h"
+
+#include "TileMap.h"
+
 class Player
 {
 
@@ -22,7 +26,9 @@ public:
 	void draw(SDL_Renderer* renderer, std::tuple<int, int> cameraPos);
 
 	void move(int direction);
-	void update();
+	void update(std::vector<Tile> tiles);
+
+	bool get_collision(std::vector<Tile> tiles);
 
 	SDL_Rect get_rect();
 	std::tuple<int, int> get_pos();

@@ -89,18 +89,25 @@ void Player::move(int direction) {
 
 }
 
-void Player::update() {
 
-	if (right)
-		x += vel;
-	if (left)
-		x -= vel;
-	if (up)
-		y -= vel;
-	if (down)
-		y += vel;
-	dstrect = { x, y, w, h };
-	pos = std::make_tuple(x, y);
+bool Player::get_collision(std::vector<Tile> tiles) {
+
+	for (int i = 0; i < tiles.size(); i++) {
+
+		if (tiles[i].type == "Water") {
+
+			if (std::get<0>(pos) < std::get<0>(tiles[i].pos) + tiles[i].dstrect.w && std::get<0>(pos) + dstrect.w > std::get<0>(tiles[i].pos) && std::get<1>(pos) < std::get<1>(tiles[i].pos) + tiles[i].dstrect.h && std::get<1>(pos) + dstrect.h > std::get<1>(tiles[i].pos)) {
+				
+				return true;
+
+			}
+
+		}
+
+	}
+
+
+	return false;
 
 }
 

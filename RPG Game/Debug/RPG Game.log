@@ -1,5 +1,3 @@
-﻿  TileMap.cpp
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(59,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(74,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\surge\source\repos\RPG Game\RPG Game\TileMap.cpp(103,20): warning C4018: '<': signed/unsigned mismatch
-  RPG Game.vcxproj -> C:\Users\surge\source\repos\RPG Game\Debug\RPG Game.exe
+﻿  Main.cpp
+Main.obj : error LNK2019: unresolved external symbol "public: void __thiscall Player::update(class std::vector<struct Tile,class std::allocator<struct Tile> >)" (?update@Player@@QAEXV?$vector@UTile@@V?$allocator@UTile@@@std@@@std@@@Z) referenced in function _SDL_main
+C:\Users\hppav\Documents\GitHub\RPG-Game\Debug\RPG Game.exe : fatal error LNK1120: 1 unresolved externals

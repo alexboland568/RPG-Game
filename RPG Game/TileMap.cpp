@@ -54,8 +54,6 @@ TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) 
 
 void TileMap::draw(SDL_Renderer* renderer, Camera* camera, Player* player, int display_width, int display_height) {
 
-	get_collision(player);
-
 	for (int i = 0; i < tiles.size(); i++) {
 
 		std::tuple<int, int> camera_pos = camera->getPos(std::get<0>(tiles[i].pos), std::get<1>(tiles[i].pos), tiles[i].dstrect.w, tiles[i].dstrect.h, player->get_rect(), display_width, display_height);
@@ -67,35 +65,10 @@ void TileMap::draw(SDL_Renderer* renderer, Camera* camera, Player* player, int d
 
 }
 
-bool TileMap::get_collision(Player* player) {
+std::vector<Tile> TileMap::get_tiles() {
 
-	std::tuple<int, int> prev_pos = player->get_pos();
+	return tiles;
 
-	for (int i = 0; i < tiles.size(); i++) {
-
-		if (tiles[i].type == "Water") {
-
-			if (std::get<0>(player->get_pos()) < std::get<0>(tiles[i].pos) + tiles[i].dstrect.w && std::get<0>(player->get_pos()) + player->get_rect().w > std::get<0>(tiles[i].pos) && std::get<1>(player->get_pos()) < std::get<1>(tiles[i].pos) + tiles[i].dstrect.h && std::get<1>(player->get_pos()) + player->get_rect().h > std::get<1>(tiles[i].pos)) {
-				
-				//pos = std::make_tuple(std::get<0>(pos), std::get<1>(pos));
-				player->set_pos(prev_pos);
-				//std::cout << std::get<0>(player->get_pos()) << ", " << std::get<1>(player->get_pos()) << std::endl;
-				return true;
-
-			}
-
-		}
-
-	}
-
-	return false; 
-
-}
-
-std::vector<TileMap::Tile> TileMap::get_tiles() {
-
-	return tiles; 
-	
 }
 
 TileMap::~TileMap() {
