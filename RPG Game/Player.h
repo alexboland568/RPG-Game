@@ -26,6 +26,7 @@ public:
 
 	SDL_Rect get_rect();
 	std::tuple<int, int> get_pos();
+	void set_pos(std::tuple<int, int> pos);
 
 private:
 

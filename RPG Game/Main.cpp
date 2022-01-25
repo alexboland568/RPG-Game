@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 		
 		// Draw 
 
-		tilemap->draw(engine->get_renderer(), camera, player->get_rect(), player->get_pos(), engine->get_width(), engine->get_height());
+		tilemap->draw(engine->get_renderer(), camera, player , engine->get_width(), engine->get_height());
 
 		player->draw(engine->get_renderer(), camera->getPos(player->get_rect().x, player->get_rect().y, player->get_rect().w, player->get_rect().h, player->get_rect(), engine->get_width(), engine->get_height()));
 		

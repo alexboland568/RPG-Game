@@ -116,6 +116,12 @@ std::tuple<int, int> Player::get_pos() {
 
 }
 
+void Player::set_pos(std::tuple<int, int> pos) {
+
+	this->pos = pos;
+
+}
+
 Player::~Player() {
 
 	SDL_FreeSurface(level_info.surface);

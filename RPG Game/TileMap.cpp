@@ -52,13 +52,13 @@ TileMap::TileMap(SDL_Renderer* renderer, int display_width, int display_height) 
 
 }
 
-void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, std::tuple<int, int> pos, int display_width, int display_height) {
+void TileMap::draw(SDL_Renderer* renderer, Camera* camera, Player* player, int display_width, int display_height) {
 
-	get_collision(pos, player_rect);
+	get_collision(player);
 
 	for (int i = 0; i < tiles.size(); i++) {
 
-		std::tuple<int, int> camera_pos = camera->getPos(std::get<0>(tiles[i].pos), std::get<1>(tiles[i].pos), tiles[i].dstrect.w, tiles[i].dstrect.h, player_rect, display_width, display_height);
+		std::tuple<int, int> camera_pos = camera->getPos(std::get<0>(tiles[i].pos), std::get<1>(tiles[i].pos), tiles[i].dstrect.w, tiles[i].dstrect.h, player->get_rect(), display_width, display_height);
 		tiles[i].dstrect = { std::get<0>(camera_pos), std::get<1>(camera_pos), 32, 32 };
 
 		SDL_RenderCopy(renderer, tiles[i].texture, NULL, &tiles[i].dstrect);
@@ -67,23 +67,20 @@ void TileMap::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect,
 
 }
 
-bool TileMap::get_collision(std::tuple<int, int> pos, SDL_Rect rect) {
-	//std::cout << rect.y << std::endl; 
-	//std::cout << tiles[0].dstrect.y << std::endl; 
+bool TileMap::get_collision(Player* player) {
+
+	std::tuple<int, int> prev_pos = player->get_pos();
+
 	for (int i = 0; i < tiles.size(); i++) {
 
 		if (tiles[i].type == "Water") {
-			//std::cout << tiles[i].dstrect.y << std::endl; 
-			if (std::get<0>(pos) < std::get<0>(tiles[i].pos) + tiles[i].dstrect.w && std::get<0>(pos) + rect.w > std::get<0>(tiles[i].pos) && std::get<1>(pos) < std::get<1>(tiles[i].pos) + tiles[i].dstrect.h && std::get<1>(pos) + rect.h > std::get<1>(tiles[i].pos)) {
+
+			if (std::get<0>(player->get_pos()) < std::get<0>(tiles[i].pos) + tiles[i].dstrect.w && std::get<0>(player->get_pos()) + player->get_rect().w > std::get<0>(tiles[i].pos) && std::get<1>(player->get_pos()) < std::get<1>(tiles[i].pos) + tiles[i].dstrect.h && std::get<1>(player->get_pos()) + player->get_rect().h > std::get<1>(tiles[i].pos)) {
 				
-				std::cout << 1 << std::endl; 
+				//pos = std::make_tuple(std::get<0>(pos), std::get<1>(pos));
+				player->set_pos(prev_pos);
+				//std::cout << std::get<0>(player->get_pos()) << ", " << std::get<1>(player->get_pos()) << std::endl;
 				return true;
-
-			}
-
-			else {
-
-				return false;
 
 			}
 

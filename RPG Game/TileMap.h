@@ -13,6 +13,9 @@
 #include "Camera.h"
 class Camera;
 
+#include "Player.h"
+class Player;
+
 
 class TileMap
 {
@@ -22,7 +25,7 @@ public:
 	TileMap(SDL_Renderer* renderer, int display_width, int display_height);
 	~TileMap();
 
-	void draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player_rect, std::tuple<int, int> pos, int display_width, int display_height);
+	void draw(SDL_Renderer* renderer, Camera* camera, Player* player, int display_width, int display_height);
 	
 	struct Tile {
 
@@ -35,13 +38,11 @@ public:
 
 	std::vector<Tile> get_tiles();
 
-	bool get_collision(std::tuple<int, int> pos, SDL_Rect rect);
+	bool get_collision(Player* playeR);
 	
 
 private:
 
-
-	
 	
 	std::vector<Tile> tiles;
 
