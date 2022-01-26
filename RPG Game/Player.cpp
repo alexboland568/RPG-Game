@@ -89,6 +89,40 @@ void Player::move(int direction) {
 
 }
 
+void Player::update(std::vector<Tile> tiles) {
+
+	std::tuple<int, int> direction = std::make_tuple(0, 0);
+
+	std::tuple<int, int> prev_pos = pos;
+
+	if (right) {
+		x += vel;
+		direction = std::make_tuple(std::get<0>(direction) + 1, std::get<1>(direction));
+	}
+	if (left) {
+		x -= vel;
+		direction = std::make_tuple(std::get<0>(direction) - 1, std::get<1>(direction));
+	}
+	if (up) {
+		y -= vel;
+		direction = std::make_tuple(std::get<0>(direction), std::get<1>(direction) -1);
+	}
+	if (down) {
+		y += vel;
+		direction = std::make_tuple(std::get<0>(direction), std::get<1>(direction) + 1);
+	}
+	dstrect = { std::get<0>(prev_pos) + std::get<0>(direction) * vel, std::get<1>(prev_pos) + std::get<1>(direction) * vel, w, h };
+	pos = std::make_tuple(std::get<0>(prev_pos) + std::get<0>(direction) * vel, std::get<1>(prev_pos) + std::get<1>(direction) * vel);
+
+	if (get_collision(tiles)) {
+
+		pos = prev_pos;
+		dstrect = { std::get<0>(prev_pos), std::get<1>(prev_pos), w, h };
+
+	}
+
+}
+
 
 bool Player::get_collision(std::vector<Tile> tiles) {
 

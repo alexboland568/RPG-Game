@@ -10,6 +10,7 @@
 #include "Input.h"
 #include "TileMap.h"
 #include "Player.h"
+#include "NPC.h"
 
 int main(int argc, char** argv) {
 
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
 	TileMap* tilemap = new TileMap(engine->get_renderer(), engine->get_width(), engine->get_height());
 
 	Player* player = new Player(engine->get_width(), engine->get_height());
-
+	NPC* npc = new NPC(std::make_tuple(40, 40));
 	while (engine->running) {
 
 		frame_start = SDL_GetTicks();
@@ -58,12 +59,7 @@ int main(int argc, char** argv) {
 		
 		player->update(tilemap->get_tiles());
 		//std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
-		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 255, 0, 255);
-		SDL_Rect test = { 40, 40, 40, 40 };
-		std::tuple<int, int> pos = camera->getPos(test.x, test.y, test.w, test.h, player->get_rect(), engine->get_width(), engine->get_height());
-		test = { std::get<0>(pos), std::get<1>(pos), test.w, test.h };
-		SDL_RenderFillRect(engine->get_renderer(), &test);
-		SDL_SetRenderDrawColor(engine->get_renderer(), 0, 0, 0, 255);
+		npc->draw(engine->get_renderer(), camera, player->get_rect(), engine->get_width(), engine->get_height());
 
 		SDL_RenderPresent(engine->get_renderer());
 

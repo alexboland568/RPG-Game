@@ -1,3 +1,2 @@
-﻿  Main.cpp
-Main.obj : error LNK2019: unresolved external symbol "public: void __thiscall Player::update(class std::vector<struct Tile,class std::allocator<struct Tile> >)" (?update@Player@@QAEXV?$vector@UTile@@V?$allocator@UTile@@@std@@@std@@@Z) referenced in function _SDL_main
-C:\Users\hppav\Documents\GitHub\RPG-Game\Debug\RPG Game.exe : fatal error LNK1120: 1 unresolved externals
+﻿  NPC.cpp
+  RPG Game.vcxproj -> C:\Users\surge\source\repos\RPG Game\Debug\RPG Game.exe
