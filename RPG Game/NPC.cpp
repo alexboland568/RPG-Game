@@ -19,3 +19,15 @@ void NPC::draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player, int disp
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 }
+
+std::tuple<int, int> NPC::get_pos() {
+
+	return pos;
+
+}
+
+SDL_Rect NPC::get_rect() {
+
+	return dstrect;
+
+}

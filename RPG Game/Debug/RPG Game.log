@@ -1,2 +1,23 @@
-﻿  NPC.cpp
-  RPG Game.vcxproj -> C:\Users\surge\source\repos\RPG Game\Debug\RPG Game.exe
+﻿  Camera.cpp
+  Input.cpp
+  Main.cpp
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Main.cpp(63,38): error C2660: 'Player::update': function does not take 1 arguments
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(30,7): message : see declaration of 'Player::update'
+  NPC.cpp
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(30,51): error C2065: 'NPC': undeclared identifier
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(30,44): error C2923: 'std::vector': 'NPC' is not a valid template type argument for parameter '_Ty'
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(30): message : see declaration of 'NPC'
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(30,44): error C2976: 'std::vector': too few template arguments
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\vector(438): message : see declaration of 'std::vector'
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(32,73): error C2065: 'NPC': undeclared identifier
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(32,66): error C2923: 'std::vector': 'NPC' is not a valid template type argument for parameter '_Ty'
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(32): message : see declaration of 'NPC'
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.h(32,66): error C2976: 'std::vector': too few template arguments
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\vector(438): message : see declaration of 'std::vector'
+  Player.cpp
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.cpp(134,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\Player.cpp(155,20): warning C4018: '<': signed/unsigned mismatch
+  TileMap.cpp
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\TileMap.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hppav\Documents\GitHub\RPG-Game\RPG Game\TileMap.cpp(76,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
