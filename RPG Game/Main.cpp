@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 
 	std::vector<NPC*> npcs;
 
-	npcs.push_back(new NPC(std::make_tuple(100, 100)));
+	npcs.push_back(new NPC(engine->get_renderer(), std::make_tuple(100, 100)));
 	while (engine->running) {
 
 		frame_start = SDL_GetTicks();
@@ -62,8 +62,11 @@ int main(int argc, char** argv) {
 		
 		player->update(tilemap->get_tiles(), npcs);
 		//std::cout << "(" << player->get_rect().x << ", " << player->get_rect().y << ")" << std::endl; 
-		npcs[0]->draw(engine->get_renderer(), camera, player->get_rect(), engine->get_width(), engine->get_height());
+		for (int i = 0; i < npcs.size(); i++) {
 
+			npcs[i]->draw(engine->get_renderer(), camera, player->get_rect(), engine->get_width(), engine->get_height());
+
+		}
 		SDL_RenderPresent(engine->get_renderer());
 
 	

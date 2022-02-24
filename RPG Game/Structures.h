@@ -16,4 +16,11 @@ struct Tile {
 
 };
 
+struct Chat_Icon {
+
+	SDL_Texture* texture;
+	SDL_Rect dstrect;
+	std::tuple<int, int> pos;
+
+};
 #endif

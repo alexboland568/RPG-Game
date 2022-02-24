@@ -15,6 +15,7 @@
 
 #include "TileMap.h"
 #include "NPC.h"
+class NPC;
 
 class Player
 {
@@ -27,13 +28,16 @@ public:
 	void draw(SDL_Renderer* renderer, std::tuple<int, int> cameraPos);
 
 	void move(int direction);
-	void update(std::vector<Tile> tiles, std::vector<NPC> npcs);
+	void update(std::vector<Tile> tiles, std::vector<NPC*> npcs);
 
-	bool get_collision(std::vector<Tile> tiles), get_collision(std::vector<NPC> npcs);
+	bool get_collision(std::vector<Tile> tiles);
+	bool get_collision(std::vector<NPC*> npcs, int& index);
 
 	SDL_Rect get_rect();
 	std::tuple<int, int> get_pos();
 	void set_pos(std::tuple<int, int> pos);
+
+	int npc_index = 0;
 
 private:
 

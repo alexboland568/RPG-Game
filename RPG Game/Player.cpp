@@ -89,7 +89,7 @@ void Player::move(int direction) {
 
 }
 
-void Player::update(std::vector<Tile> tiles, std::vector<NPC> npcs) {
+void Player::update(std::vector<Tile> tiles, std::vector<NPC*> npcs) {
 
 	std::tuple<int, int> direction = std::make_tuple(0, 0);
 
@@ -121,8 +121,18 @@ void Player::update(std::vector<Tile> tiles, std::vector<NPC> npcs) {
 
 	}
 
-	if (get_collision(npcs)) {
+	int i = 0;
 
+	if (get_collision(npcs, i)) { // MARKED
+
+		std::cout << i << std::endl; 
+		npcs[i]->in_range = true;
+
+	}
+
+	else {
+
+		npcs[i]->in_range = false;
 
 	}
 
@@ -150,13 +160,14 @@ bool Player::get_collision(std::vector<Tile> tiles) {
 
 }
 
-bool Player::get_collision(std::vector<NPC> npcs) {
+bool Player::get_collision(std::vector<NPC*> npcs, int& index) {
 
 	for (int i = 0; i < npcs.size(); i++) {
 
-		if (std::get<0>(pos) < std::get<0>(npcs[i].get_pos()) + npcs[i].get_rect().w && std::get<0>(pos) + dstrect.w > std::get<0>(npcs[i].get_pos()) && std::get<1>(pos) < std::get<1>(npcs[i].get_pos()) + npcs[i].get_rect().h && std::get<1>(pos) + dstrect.h > std::get<1>(npcs[i].get_pos())) {
+		if (std::get<0>(pos) < std::get<0>(npcs[i]->get_pos()) + npcs[i]->get_rect().w && std::get<0>(pos) + dstrect.w > std::get<0>(npcs[i]->get_pos()) && std::get<1>(pos) < std::get<1>(npcs[i]->get_pos()) + npcs[i]->get_rect().h && std::get<1>(pos) + dstrect.h > std::get<1>(npcs[i]->get_pos())) {
+	
+			index = i;
 
-			std::cout << "?" << std::endl; 
 			return true;
 
 		}

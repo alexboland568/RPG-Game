@@ -4,6 +4,7 @@
 #define NPC_H
 
 #include "Camera.h"
+#include "Structures.h"
 
 #include <string>
 #include <tuple>
@@ -16,12 +17,17 @@ class NPC
 
 public:
 
-	NPC(std::tuple<int, int> pos);
+	NPC(SDL_Renderer* renderer, std::tuple<int, int> pos);
 
 	void draw(SDL_Renderer* renderer, Camera* camera, SDL_Rect player, int display_width, int display_height);
 
 	std::tuple<int, int> get_pos();
 	SDL_Rect get_rect();
+
+	Chat_Icon chat_icon; 
+
+	bool in_range = false;
+
 
 private:
 
@@ -32,7 +38,7 @@ private:
 
 	std::tuple<int, int> pos;
 
-
+	
 };
 
 #endif

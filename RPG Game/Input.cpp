@@ -47,6 +47,9 @@ void Input::update(Engine* engine, Player* player) {
 	if (is_key_released(SDL_SCANCODE_S))
 		player->move(-4);
 
+	if (is_key_triggered(SDL_SCANCODE_E))
+
+
 }
 
 bool Input::is_key_triggered(const SDL_Scancode keys) const {
